@@ -1,0 +1,7 @@
+bin/
+node_modules/
+.env
+dist/
+**/bin/
+**/node_modules/
+**/.env
