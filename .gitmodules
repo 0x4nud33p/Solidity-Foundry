@@ -6,3 +6,9 @@
 [submodule "Foundry-Smart-Contract-Lottery/lib/forge-std"]
 	path = Foundry-Smart-Contract-Lottery/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "Foundry-Lottery-Contract/lib/foundry-devops"]
+	path = Foundry-Lottery-Contract/lib/foundry-devops
+	url = https://github.com/cyfrin/foundry-devops
+[submodule "Foundry-Lottery-Contract/lib/chainlink-brownie-contracts"]
+	path = Foundry-Lottery-Contract/lib/chainlink-brownie-contracts
+	url = https://github.com/smartcontractkit/chainlink-brownie-contracts
