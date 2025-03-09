@@ -1,24 +1,3 @@
-// Layout of Contract:
-// version
-// imports
-// errors
-// interfaces, libraries, contracts
-// Type declarations
-// State variables
-// Events
-// Modifiers
-// Functions
-
-// Layout of Functions:
-// constructor
-// receive function (if exists)
-// fallback function (if exists)
-// external
-// public
-// internal
-// private
-// view & pure functions
-
 // SPDX-License-Identifier: MIT
 
 pragma solidity 0.8.19;
@@ -83,15 +62,9 @@ contract Raffle is VRFConsumerBaseV2Plus, AutomationCompatibleInterface {
         s_raffleState = RaffleState.OPEN;
         s_lastTimeStamp = block.timestamp;
         i_callbackGasLimit = callbackGasLimit;
-        // uint256 balance = address(this).balance;
-        // if (balance > 0) {
-        //     payable(msg.sender).transfer(balance);
-        // }
     }
 
     function enterRaffle() public payable {
-        // require(msg.value >= i_entranceFee, "Not enough value sent");
-        // require(s_raffleState == RaffleState.OPEN, "Raffle is not open");
         if (msg.value < i_entranceFee) {
             revert Raffle__SendMoreToEnterRaffle();
         }
@@ -99,8 +72,6 @@ contract Raffle is VRFConsumerBaseV2Plus, AutomationCompatibleInterface {
             revert Raffle__RaffleNotOpen();
         }
         s_players.push(payable(msg.sender));
-        // Emit an event when we update a dynamic array or mapping
-        // Named events with the function name reversed
         emit RaffleEnter(msg.sender);
     }
 
@@ -163,12 +134,6 @@ contract Raffle is VRFConsumerBaseV2Plus, AutomationCompatibleInterface {
      * calls to send the money to the random winner.
      */
     function fulfillRandomWords(uint256, /* requestId */ uint256[] calldata randomWords) internal override {
-        // s_players size 10
-        // randomNumber 202
-        // 202 % 10 ? what's doesn't divide evenly into 202?
-        // 20 * 10 = 200
-        // 2
-        // 202 % 10 = 2
         uint256 indexOfWinner = randomWords[0] % s_players.length;
         address payable recentWinner = s_players[indexOfWinner];
         s_recentWinner = recentWinner;
